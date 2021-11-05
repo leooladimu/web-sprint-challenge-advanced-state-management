@@ -1,46 +1,49 @@
-import { FETCH_START, FETCH_SUCCESS, FETCH_FAIL,ADD_SMURF, SET_ERROR } from '../actions/index.js';
+import { FETCH_START, FETCH_SUCCESS, FETCH_FAIL, ADD_SMURF, SET_ERROR } from '../actions'
 
-export const initialState = {
+const initialState = {
     smurfs: [],
     isLoading: false,
     error: ''
 };
 
-const reducer = (state= initialState, action) => {
+const reducer = (state = initialState, action) => {
+    // console.log('🀃', state);
     switch(action.type) {
-        case FETCH_START :
-        return {
-            ...state,
-            isLoading: true
+        case FETCH_START : {
+            return ({
+                ...state,
+                isLoading: true
+            })
         }
         case FETCH_SUCCESS:
-        return {
-            ...state,
-            isLoading: false,
-            smurfs: action.payload,
-            error: ''
-        }
+            return ({
+                ...state,
+                isLoading: false,
+                smurfs: action.payload
+            })
         case FETCH_FAIL:
-        return {
-            ...state,
-            isLoading: false,
-            error: action.payload
-        }
+            // console.log('〄', state);
+            return ({
+                ...state,
+                smurfs: [],
+                error: action.payload
+            })
         case ADD_SMURF:
-        return {
-            ...state,
-            smurfs: [...state.smurfs, action.payload],
-            isLoading: true
-        }
+            return ({
+                ...state,
+                smurfs: [ ...state.smurfs, action.payload ],
+                error: ''
+            })
         case SET_ERROR:
-        return {
-            ...state,
-            error: "Name, position and nickname fields are required."
-        }
+            return ({
+                ...state,
+                smurfs: [],
+                error: action.payload
+            })
         default:
-            return state
+            return (state);
     }
-};
+}
 
 //**************DO NOT EDIT ANY CODE BEYOND THIS POINT**************//
 export default reducer;

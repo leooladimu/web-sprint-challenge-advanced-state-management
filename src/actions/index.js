@@ -7,35 +7,38 @@ export const SET_ERROR = "SET_ERROR";
 export const ADD_SMURF = "ADD_SMURF";
 
 export const fetchSmurfs = () => {
-    console.log('☠︎');
-    return ( dispatch ) => {
-        console.log('☠︎');
+   
+    return ( dispatch => {
         dispatch({ type: FETCH_START });
         axios.get(`http://localhost:3000/smurfs`)
-        .then((r)=> {
-            console.log(r.data);
-            dispatch({ type: FETCH_SUCCESS, payload: r.data});
+        .then(r => {
+            // console.log('☏', r.data);
+            dispatch(fetchSuccess(r.data))
         })
-        .catch((err) => {
-            dispatch({ type: FETCH_FAIL, payload: err.message });
-        })
-    }
-};
-
-
-export const addSmurf = (smurf) => dispatch => {
-    axios.post('http://localhost:3000/smurfs', smurf)
-    .then((r) => {
-        dispatch({ type: FETCH_SUCCESS, payload: r.data })
-    })
-    .catch(err => {
-        dispatch({ type: FETCH_FAIL, payload: err.response.data });
+        .catch(err => setError(err));
     });
-};
+}
 
-export const setError = () => dispatch => {
-    dispatch({ type: SET_ERROR });
-};
+export const fetchStart = () => {
+    return ({type: FETCH_START});
+}
+
+export const fetchSuccess = (smurfs) => {
+    return ({type: FETCH_SUCCESS, payload: smurfs})
+}
+
+export const fetchFail = (error) => {
+    return ({type: FETCH_FAIL, payload: error})
+}
+
+export const addSmurf = (smurfs) => {
+    return ({type: ADD_SMURF, payload: smurfs})
+}
+
+export const setError = (error) => {
+    return ({type: SET_ERROR, payload: error})
+}
+
 //Task List:
 //1. Add a thunk action called fetchSmurfs that triggers a loading status display in our application, performs an axios call to retreive smurfs from our server, saves the result of that call to our state and shows an error if one is made.
 //2. Add a standard action that allows us to add new smurf (including the name, nickname, position, summary)
