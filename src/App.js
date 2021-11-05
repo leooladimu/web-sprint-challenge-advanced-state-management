@@ -1,17 +1,20 @@
-import React, { Component } from "react";
-
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import AddForm from './components/AddForm';
 import SmurfList from './components/SmurfList';
 import Header from './components/Header';
-
+import { fetchSmurfs } from "./actions";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
-import { fetchSmurfs } from './actions';
 
 class App extends Component {
+
+  componentDidMount() {
+    this.props.fetchSmurfs();
+  }
+
   render() {
-    fetchSmurfs()
-   
+    
     return (
       <div className="App">
         <Header />
@@ -25,7 +28,7 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null, { fetchSmurfs })(App);
 
 
 //Task List:
