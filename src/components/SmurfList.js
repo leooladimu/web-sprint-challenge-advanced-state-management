@@ -4,19 +4,19 @@ import Smurf from './Smurf';
 import { connect } from "react-redux";
 
  const SmurfList = props => {
-    // const { smurfs, loading } = props;
+    const { smurfs } = props;
     const isLoading = state => state.loading;
 
     if (isLoading) {
-        return <h1>Loading...</h1>;
+        return <h1>WAIT!!!</h1>;
     }
 
     return(<div className="listContainer">
-        {props.error ? <p style={{ color: "red" }}>{props.error}</p> : null}
-        {props.smurfs.map((smurf) => (
-          <Smurf key={smurf.id} smurf={smurf}/>
-        ))}
-        {/* <Smurf smurf={testSmurf}/> */}
+        {
+            smurfs.map(smurf => {
+                return(<Smurf key={smurf.id} smurf={smurf}/>)
+            })
+        }
     </div>);
 }
  
