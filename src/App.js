@@ -8,7 +8,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 
 class App extends Component {
+  
   render() {
+    console.log('⌚︎');
     return (
       <div className="App">
         <Header />
