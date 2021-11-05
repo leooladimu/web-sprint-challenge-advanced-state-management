@@ -7,8 +7,9 @@ export const SET_ERROR = "SET_ERROR";
 export const ADD_SMURF = "ADD_SMURF";
 
 export const fetchSmurfs = () => {
-    console.log('⌚︎');
+    console.log('☠︎');
     return ( dispatch ) => {
+        console.log('☠︎');
         dispatch({ type: FETCH_START });
         axios.get(`http://localhost:3000/smurfs`)
         .then((r)=> {

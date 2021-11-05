@@ -1,9 +1,46 @@
+import { FETCH_START, FETCH_SUCCESS, FETCH_FAIL,ADD_SMURF, SET_ERROR } from '../actions/index.js';
 
 export const initialState = {
-}
+    smurfs: [],
+    isLoading: false,
+    error: ''
+};
 
-const reducer = ()=>{
-}
+const reducer = (state= initialState, action) => {
+    switch(action.type) {
+        case FETCH_START :
+        return {
+            ...state,
+            isLoading: true
+        }
+        case FETCH_SUCCESS:
+        return {
+            ...state,
+            isLoading: false,
+            smurfs: action.payload,
+            error: ''
+        }
+        case FETCH_FAIL:
+        return {
+            ...state,
+            isLoading: false,
+            error: action.payload
+        }
+        case ADD_SMURF:
+        return {
+            ...state,
+            smurfs: [...state.smurfs, action.payload],
+            isLoading: true
+        }
+        case SET_ERROR:
+        return {
+            ...state,
+            error: "Name, position and nickname fields are required."
+        }
+        default:
+            return state
+    }
+};
 
 //**************DO NOT EDIT ANY CODE BEYOND THIS POINT**************//
 export default reducer;
