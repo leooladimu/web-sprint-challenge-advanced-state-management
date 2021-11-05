@@ -23,7 +23,8 @@ import { connect } from "react-redux";
 const mapStateToProps = state => {
     return {
         // ...state,
-        smurfs: state.smurfs
+        smurfs: state.smurfs,
+        loading: state.loading
     }
 }
 
