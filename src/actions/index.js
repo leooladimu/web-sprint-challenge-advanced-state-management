@@ -8,15 +8,17 @@ export const ADD_SMURF = "ADD_SMURF";
 
 export const fetchSmurfs = () => {
    
-    return ( dispatch => {
+    return (dispatch) => {
         dispatch({ type: FETCH_START });
-        axios.get(`http://localhost:3000/smurfs`)
-        .then(r => {
-            // console.log('☏', r.data);
-            dispatch(fetchSuccess(r.data))
-        })
+        setTimeout(() => {
+            axios.get(`http://localhost:3000/smurfs`)
+            .then(r => {
+                // console.log('☏', r.data);
+                dispatch(fetchSuccess(r.data))
+            })
         .catch(err => setError(err));
-    });
+        },1500)
+    }
 }
 
 export const fetchStart = () => {

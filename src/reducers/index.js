@@ -3,7 +3,7 @@ import { FETCH_START, FETCH_SUCCESS, FETCH_FAIL, ADD_SMURF, SET_ERROR } from '..
 const initialState = {
     smurfs: [],
     isLoading: false,
-    error: ''
+    errorMessage: ''
 };
 
 const reducer = (state = initialState, action) => {
@@ -26,22 +26,22 @@ const reducer = (state = initialState, action) => {
             return ({
                 ...state,
                 smurfs: [],
-                error: action.payload
+                errorMessage: action.payload
             })
         case ADD_SMURF:
             return ({
                 ...state,
                 smurfs: [ ...state.smurfs, action.payload ],
-                error: ''
+                errorMessage: ''
             })
         case SET_ERROR:
             return ({
                 ...state,
                 smurfs: [],
-                error: action.payload
+                errorMessage: action.payload
             })
         default:
-            return (state);
+            return state;
     }
 }
 
