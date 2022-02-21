@@ -15,7 +15,7 @@ import { connect } from "react-redux";
     }
 
     if (isLoading) {
-        return <h1>WAIT!!!</h1>;
+        return <h1>Please hold</h1>;
     }
 
     return(<div className="listContainer">
